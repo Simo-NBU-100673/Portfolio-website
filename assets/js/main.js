@@ -1,3 +1,23 @@
+/*========================== THEME ===========================*/
+const themeToggleButton = document.querySelector('.theme__toggle__button');
+const themeIcon = themeToggleButton.querySelector('i');
+
+themeToggleButton.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark-theme');
+    toggleClass(themeIcon, 'uil-moon', 'uil-sun');
+});
+
+function toggleClass(element, classToRemove, classToAdd) {
+    if (element.classList.contains(classToRemove)) {
+        element.classList.remove(classToRemove);
+        element.classList.add(classToAdd);
+    } else {
+        element.classList.remove(classToAdd);
+        element.classList.add(classToRemove);
+    }
+}
+
+
 /*==================== MENU SHOW Y HIDDEN ====================*/
 const navMenu = document.getElementById('nav-menu'),
     navToggle = document.getElementById('nav-toggle'),

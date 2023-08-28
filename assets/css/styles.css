@@ -53,6 +53,23 @@
     --z-modal: 1000;
 }
 
+/* Dark theme variables */
+:root.dark-theme {
+    --hue-color: 200; /* Adjusted hue value for better contrast */
+
+    /* HSL color mode */
+    --first-color: hsl(var(--hue-color), 69%, 61%);
+    --first-color-second: hsl(var(--hue-color), 69%, 61%);
+    --first-color-alt: hsl(var(--hue-color), 57%, 53%);
+    --first-color-lighter: hsl(var(--hue-color), 92%, 85%);
+    --title-color: hsl(var(--hue-color), 0%, 95%);
+    --text-color: hsl(var(--hue-color), 0%, 75%);
+    --text-color-light: hsl(var(--hue-color), 0%, 55%);
+    --input-color: hsl(var(--hue-color), 0%, 25%);
+    --body-color: hsl(var(--hue-color), 0%, 10%);
+    --container-color: hsl(var(--hue-color), 0%, 15%);
+}
+
 /* Font size for large devices */
 @media screen and (min-width: 968px) {
     :root {
@@ -83,7 +100,6 @@ body{
     font-size: var(--normal-font-size);
     background-color: var(--body-color);
     color: var(--text-color);
-
 }
 
 h1,h2,h3,h4{
@@ -97,12 +113,29 @@ ul{
 
 a{
     text-decoration: none;
+    white-space: nowrap;
 }
 
 img{
     max-width: 100%;
     height: auto;
 }
+/*==================== SCROLL ====================*/
+
+body::-webkit-scrollbar {
+    width: 8px;
+}
+
+body::-webkit-scrollbar-thumb:vertical {
+    border-radius: 4px;
+    background-color: var(--first-color);
+}
+
+body::-webkit-scrollbar-thumb:vertical:hover {
+    /* make a little lighter version of the --first-color to be the background color*/
+    background-color: var(--first-color-alt);
+}
+
 /*==================== REUSABLE CSS CLASSES ====================*/
 .section{
     padding: 2rem 0 4rem;
@@ -234,6 +267,54 @@ img{
     box-shadow: 0 -1px 4px rgba(0,0,0,.15);
 }
 
+/*==================== THEME BUTTON HEADER ====================*/
+.theme__toggle__button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    background-color: var(--container-color);
+}
+
+.theme__toggle__button i {
+    padding: 0.2rem;
+    font-size: var(--h3-font-size);
+    font-weight: var(--font-medium);
+    color: var(--first-color);
+    transition: transform 0.3s;
+}
+
+/*==================== THEME BUTTON TOOLTIP ====================*/
+
+.theme__toggle__button::before {
+    white-space: nowrap;
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -35px;
+    left: 100%;
+    transform: translateX(-100%);
+    padding: 5px;
+    background-color: var(--text-color-light);
+    color: #fff;
+    font-size: 12px;
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.theme__toggle__button:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
 
 /*==================== HOME ====================*/
 .home__container{
@@ -706,6 +787,11 @@ img{
 }
 
 @media screen and (min-width: 768px){
+    body::-webkit-scrollbar {
+        width: 0;
+        background-color: transparent;
+    }
+
     .container{
         margin-left: auto;
         margin-right: auto;
