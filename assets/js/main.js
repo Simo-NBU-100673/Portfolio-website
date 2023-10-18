@@ -67,7 +67,7 @@ navLink.forEach(n => n.addEventListener('click', linkAction))
 const skillGroups = document.querySelectorAll('.skills__content');
 
 window.onload = () => {
-    const lastOpenedSkillGroupName = localStorage.getItem('open_skill_group');
+    const lastOpenedSkillGroupName = getLocalStorageLastValue();
 
     skillGroups.forEach((skillsGroup) => {
         let skillsProficiencyMap = generateSkillsProficiencyMap(skillsGroup);
@@ -78,23 +78,57 @@ window.onload = () => {
         }
 
         let skillsGroupHeader = getSkillsGroupHeader(skillsGroup);
-
-        skillsGroupHeader.addEventListener('click',()=>{
-            let isOpen = isGroupOpen(skillsGroup)
-
-            skillGroups.forEach((group)=>{
-                let skillsProficiencyMap = generateSkillsProficiencyMap(group);
-                closeSkillsGroup(group, skillsProficiencyMap);
-            })
-
-            if(!isOpen){
-                openSkillsGroup(skillsGroup, skillsProficiencyMap);
-            }
-
-
-        })
+        setEventListenerOnGroupsHeader(skillsGroupHeader, skillsGroup, skillsProficiencyMap);
 
     });
+}
+
+function getLocalStorageLastValue(){
+    let key = 'open_skill_group_timestamp';
+    let expirationTimeInMilliseconds = 60 * 60 * 1000; // 60 minutes in milliseconds
+
+// Get the stored timestamp
+    let storedTimestamp = localStorage.getItem(key);
+    let storedValue;
+
+    if (storedTimestamp) {
+        const currentTime = new Date().getTime();
+        const elapsedTime = currentTime - parseInt(storedTimestamp);
+
+        // Check if the elapsed time exceeds the expiration time
+        if (elapsedTime > expirationTimeInMilliseconds) {
+            // The key has expired
+            // Perform your expiration logic here, e.g., remove the key
+            localStorage.removeItem(key);
+            localStorage.removeItem('open_skill_group');
+        } else {
+            // The key is still valid
+            // You can use the stored value
+            storedValue = localStorage.getItem('open_skill_group');
+        }
+    }
+
+    return storedValue;
+}
+
+function setEventListenerOnGroupsHeader(skillsGroupHeader, skillsGroup, skillsProficiencyMap) {
+    skillsGroupHeader.addEventListener('click', () => {
+        let isOpen = isGroupOpen(skillsGroup)
+
+        closeAllSkillGroups();
+
+        if (!isOpen) {
+            openSkillsGroup(skillsGroup, skillsProficiencyMap);
+        }
+
+    })
+}
+
+function closeAllSkillGroups() {
+    skillGroups.forEach((group) => {
+        let skillsProficiencyMap = generateSkillsProficiencyMap(group);
+        closeSkillsGroup(group, skillsProficiencyMap);
+    })
 }
 
 //MapBuilding method
@@ -125,11 +159,18 @@ function openSkillsGroup(skillsGroup, skillsProficiencyMap) {
     let skillsGroupName = getSkillsGroupName(skillsGroup);
 
     localStorage.setItem('open_skill_group', skillsGroupName);
+    saveCurrentTimeStamp();
 
     skillsGroup.classList.remove('skills__close');
     skillsGroup.classList.add('skills__open');
 
     setPercentageBarWidth(skillsProficiencyMap);
+}
+
+function saveCurrentTimeStamp() {
+    // Store the timestamp for when the value was set
+    const timestamp = new Date().getTime();
+    localStorage.setItem('open_skill_group_timestamp', timestamp.toString());
 }
 
 //function that closes a Group of skills
