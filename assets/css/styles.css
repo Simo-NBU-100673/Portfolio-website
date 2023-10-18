@@ -3,7 +3,10 @@
 
 /*==================== VARIABLES CSS ====================*/
 :root {
+    --dark-mode-transition-speed: 0.8s;
+
     --header-height: 3rem;
+    --scroll-header-shadow: 0 -1px 4px rgba(0,0,0,.15);
 
     /*========== Colors ==========*/
     --hue-color: 1; /*Purple 250 - Green 142 - Blue 230 - Pink 340*/
@@ -54,8 +57,10 @@
 }
 
 /* Dark theme variables */
-:root.dark-theme {
+.dark_mode {
     --hue-color: 200; /* Adjusted hue value for better contrast */
+
+    --scroll-header-shadow: 0 -1px 4px rgba(255, 255, 255, 0.2);
 
     /* HSL color mode */
     --first-color: hsl(var(--hue-color), 69%, 61%);
@@ -100,6 +105,7 @@ body{
     font-size: var(--normal-font-size);
     background-color: var(--body-color);
     color: var(--text-color);
+    transition: background-color var(--dark-mode-transition-speed), color var(--dark-mode-transition-speed);
 }
 
 h1,h2,h3,h4{
@@ -264,11 +270,11 @@ body::-webkit-scrollbar-thumb:vertical:hover {
 
 /* Change background header */
 .scroll-header{
-    box-shadow: 0 -1px 4px rgba(0,0,0,.15);
+    box-shadow: var(--scroll-header-shadow);
 }
 
 /*==================== THEME BUTTON HEADER ====================*/
-.theme__toggle__button {
+#dark__mode__toggle__button {
     position: relative;
     display: flex;
     align-items: center;
@@ -283,7 +289,7 @@ body::-webkit-scrollbar-thumb:vertical:hover {
     background-color: var(--container-color);
 }
 
-.theme__toggle__button i {
+#dark__mode__toggle__button i {
     padding: 0.2rem;
     font-size: var(--h3-font-size);
     font-weight: var(--font-medium);
@@ -293,7 +299,7 @@ body::-webkit-scrollbar-thumb:vertical:hover {
 
 /*==================== THEME BUTTON TOOLTIP ====================*/
 
-.theme__toggle__button::before {
+#dark__mode__toggle__button::before {
     white-space: nowrap;
     content: attr(data-tooltip);
     position: absolute;
@@ -311,7 +317,7 @@ body::-webkit-scrollbar-thumb:vertical:hover {
     transition: opacity 0.3s, visibility 0.3s;
 }
 
-.theme__toggle__button:hover::before {
+#dark__mode__toggle__button:hover::before {
     opacity: 1;
     visibility: visible;
 }

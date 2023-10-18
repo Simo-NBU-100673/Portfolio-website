@@ -1,21 +1,34 @@
 /*========================== THEME ===========================*/
-const themeToggleButton = document.querySelector('.theme__toggle__button');
-const themeIcon = themeToggleButton.querySelector('i');
+const DARK_MODE = 'dark_mode';
+let darkMode = localStorage.getItem(DARK_MODE);
+const darkModeToggle = document.querySelector('#dark__mode__toggle__button');
+const darkModeIcon = darkModeToggle.querySelector('i');
 
-themeToggleButton.addEventListener('click', () => {
-    document.documentElement.classList.toggle('dark-theme');
-    toggleClass(themeIcon, 'uil-moon', 'uil-sun');
-});
+const enableDarkMode = () => {
+    document.body.classList.add(DARK_MODE);
+    localStorage.setItem(DARK_MODE, 'enabled');
+    darkModeIcon.classList.replace('uil-sun', 'uil-moon')
+}
 
-function toggleClass(element, classToRemove, classToAdd) {
-    if (element.classList.contains(classToRemove)) {
-        element.classList.remove(classToRemove);
-        element.classList.add(classToAdd);
-    } else {
-        element.classList.remove(classToAdd);
-        element.classList.add(classToRemove);
+const disableDarkMode = () => {
+    document.body.classList.remove(DARK_MODE);
+    localStorage.setItem(DARK_MODE, null);
+    darkModeIcon.classList.replace('uil-moon', 'uil-sun')
+}
+
+window.onload = () => {
+    if (darkMode === 'enabled') {
+        enableDarkMode();
     }
 }
+darkModeToggle.addEventListener('click', () => {
+    darkMode = localStorage.getItem(DARK_MODE);
+    if (darkMode !== 'enabled') {
+        enableDarkMode();
+    } else {
+        disableDarkMode();
+    }
+});
 
 
 /*==================== MENU SHOW Y HIDDEN ====================*/
