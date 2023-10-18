@@ -540,23 +540,9 @@ body::-webkit-scrollbar-thumb:vertical:hover {
 .skills__percentage{
     display: block;
     background-color: var(--first-color);
+    width: 0;
+    transition: width 1s;
 }
-
-.skills__html{width: 50%;}
-.skills__css{width: 60%;}
-.skills__js{width: 30%;}
-
-.skills__c{width: 90%;}
-.skills__oop{width: 60%;}
-.skills__ptr{width: 85%;}
-
-.skills__acounting{width: 100%;}
-.skills__report{width: 100%;}
-.skills__declaration{width: 100%;}
-
-.skills__english{width: 90%;}
-.skills__german{width: 20%;}
-.skills__bulgarian{width: 90%;}
 
 .skills__close .skills__list{
     height: 0;
@@ -566,6 +552,11 @@ body::-webkit-scrollbar-thumb:vertical:hover {
 .skills__open .skills__list{
     height: max-content;
     margin-bottom: var(--mb-2-5);
+}
+
+/*make animation when skills__open for its height*/
+.skills__close .skills__list, .skills__open .skills__list{
+    transition: .4s;
 }
 
 .skills__open .skills__arrow{
