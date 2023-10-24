@@ -1,6 +1,7 @@
 /*========================== THEME ===========================*/
 const DARK_MODE = 'dark_mode';
 let darkMode = localStorage.getItem(DARK_MODE);
+
 const darkModeToggle = document.querySelector('#dark__mode__toggle__button');
 const darkModeIcon = darkModeToggle.querySelector('i');
 
@@ -10,17 +11,16 @@ const enableDarkMode = () => {
     darkModeIcon.classList.replace('uil-sun', 'uil-moon')
 }
 
+if (darkMode === 'enabled') {
+    enableDarkMode();
+}
+
 const disableDarkMode = () => {
     document.body.classList.remove(DARK_MODE);
     localStorage.setItem(DARK_MODE, null);
     darkModeIcon.classList.replace('uil-moon', 'uil-sun')
 }
 
-window.onload = () => {
-    if (darkMode === 'enabled') {
-        enableDarkMode();
-    }
-}
 darkModeToggle.addEventListener('click', () => {
     darkMode = localStorage.getItem(DARK_MODE);
     if (darkMode !== 'enabled') {
