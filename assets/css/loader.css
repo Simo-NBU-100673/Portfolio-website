@@ -24,8 +24,8 @@
 }
 
 #loader-container #loader{
-    width: 30%;
-    height: 30%;
+    width: clamp(min(10vw, 20rem), 300px, max(90vw, 55rem));
+    height: clamp(min(10vw, 20rem), 300px, max(90vw, 55rem));
     display: flex;
     align-items: center;
     justify-content: center;
