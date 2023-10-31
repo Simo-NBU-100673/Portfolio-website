@@ -1,3 +1,13 @@
+/*========================== LOADER ==========================*/
+setTimeout(()=>{
+    let loaderContainer = document.getElementById('loader-container');
+    loaderContainer.classList.toggle('hide');
+
+    loaderContainer.addEventListener('transitionend', () => {
+        loaderContainer.remove();
+    });
+}, 2000);
+
 /*========================== THEME ===========================*/
 const DARK_MODE = 'dark_mode';
 let darkMode = localStorage.getItem(DARK_MODE);

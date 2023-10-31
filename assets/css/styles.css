@@ -1,37 +1,6 @@
 /*==================== GOOGLE FONTS ====================*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-/*================= STILL IN MAINTENANCE ====================*/
-
-/* Styles for the maintenance overlay */
-.maintenance-overlay {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(128, 128, 128, 0.8); /* Grayish background with some transparency */
-    z-index: 9999; /* High z-index to ensure it's on top of other content */
-}
-
-.maintenance-overlay:hover{
-    cursor: not-allowed;
-}
-
-.maintenance-text {
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    font-size: 62px;
-    color: #fff; /* Text color */
-    font-weight: bold; /* Text style */
-    border: #171717 1px solid;
-    box-shadow: 0 0 8px #171717;
-}
-
 /*==================== VARIABLES CSS ====================*/
 :root {
     --dark-mode-transition-speed: 0.8s;
@@ -157,6 +126,7 @@ img{
     max-width: 100%;
     height: auto;
 }
+
 /*==================== SCROLL ====================*/
 
 body::-webkit-scrollbar {
