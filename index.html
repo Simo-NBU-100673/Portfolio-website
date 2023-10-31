@@ -7,32 +7,41 @@
         <!--==================== UNICONS ====================-->
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
-        <!--==================== CSS ====================-->
+        <!--==================== MAIN CSS ===================-->
         <link rel="stylesheet" href="assets/css/styles.css">
 
+        <!--==================== LOADER CSS =================-->
+        <link rel="stylesheet" href="assets/css/loader.css">
+
         <title>Portfolio</title>
-        <!--================= FAV ICON ==================-->
+        <!--==================== FAV ICON ===================-->
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.png">
     </head>
     <body>
-        <!---------------------Maintenance---------------------->
-        <script>
-            const maintenanceOverlayHTML = `
-                  <div class="maintenance-overlay">
-                    <div class="maintenance-text">Portfolio currently in maintenance</div>
-                  </div>
-                `;
-
-            document.body.insertAdjacentHTML('afterbegin', maintenanceOverlayHTML);
-
-            document.addEventListener('contextmenu', event => event.preventDefault());
-            document.addEventListener('keydown', function(event) {
-                if (event.key === 'F12' || event.keyCode === 123) {
-                    event.preventDefault();
-                    console.log('F12 is disabled');
-                }
-            });
-        </script>
+        <!--==================== LOADER ====================-->
+        <div id="loader-container">
+            <div id="loader">
+                <svg data-name="Layer 1" height="465.4599914550781" id="b2ba107d-a100-457e-8130-6ec1be27dc01"
+                     viewBox="0 0 1134.6 465.46" width="1134.5999755859375" xmlns="http://www.w3.org/2000/svg">
+                    <polygon class="svg-elem-1"
+                             points="226.25 76.71 226.25 153.25 114.31 231.71 226.25 313.86 226.25 389.61 1.75 231.71 226.25 76.71"></polygon>
+                    <polygon class="svg-elem-2"
+                             points="346.63 1.21 398.25 14.54 268.85 464.21 214.25 447.92 346.63 1.21"></polygon>
+                    <polygon
+                            class="svg-elem-3"
+                            points="344.25 298.71 315.25 393.71 541.25 237.71 393.25 132.71 377.25 194.71 437.25 235.71 344.25 298.71"></polygon>
+                    <g>
+                        <path class="svg-elem-4"
+                              d="M899,396.88A317.52,317.52,0,0,1,842.5,392a232.44,232.44,0,0,1-49-14.16l7.82-59.33A314.93,314.93,0,0,0,854.1,336a217.07,217.07,0,0,0,48.83,6q29.3,0,44.31-10.38t15-30.39q0-26.13-29.78-39.8l-54-25.63q-36.37-17.08-56-42.24t-19.65-57.86q0-45.41,28.93-70.31t81.91-24.91q33.2,0,61.16,10.87A156.36,156.36,0,0,1,1026,84.14l-40.28,44.43q-18.8-16.6-36.5-25t-35.28-8.42q-22.95,0-35.64,10.38t-12.7,30.15a36.39,36.39,0,0,0,8.67,24q8.67,10.38,25,18.67l48.58,24.17q37.35,18.57,57.25,42.85a85.91,85.91,0,0,1,19.9,56q0,46.63-32.11,71.05T899,396.88Z"
+                              transform="translate(-199.75 -2.79)"></path>
+                        <path class="svg-elem-5"
+                              d="M1094.09,392V45.32h58.11V392Zm52.25-102.54v-54.2h52.24q35.16,0,53.84-18.56T1271.09,164q0-31.25-18.67-47.85t-53.84-16.6h-51.27V45.32h51.27q65.19,0,100,30t34.79,86.18q0,61.77-34.79,94.85t-100,33.08Z"
+                              transform="translate(-199.75 -2.79)"></path>
+                    </g>
+                </svg>
+            </div>
+        </div>
+      
         <!--==================== HEADER ====================-->
         <header class="header" id="header">
             <nav class="nav container">
@@ -908,6 +917,20 @@
             <section class="projects section" id="projects">
                 <h2 class="section__title">Projects</h2>
                 <span class="section__subtitle">Those are the projects I'm most proud of</span>
+                <div class="projects__container container grid">
+                    <!--==================== PROJECT 1 ====================-->
+                    <div class="project__card">
+                        <div class="project__data">
+                            <h3 class="project__title">Project 1</h3>
+                            <p class="project__description">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Quisquam, voluptatum.</p>
+                            <a href="#" class="button button--flex button--small project__button">
+                                Demo
+                                <i class="uil uil-arrow-right button__icon"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <!--==================== GAME ====================-->
