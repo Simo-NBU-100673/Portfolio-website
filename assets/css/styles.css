@@ -130,17 +130,35 @@ img{
 /*==================== SCROLL ====================*/
 
 body::-webkit-scrollbar {
-    width: 8px;
+    width: 0;
 }
 
-body::-webkit-scrollbar-thumb:vertical {
-    border-radius: 4px;
+#scrollbar {
+    height: 100vh;
+}
+
+#scrollbar__thumb {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 7px;
+    border-radius: 10px;
+    margin: 2px;
     background-color: var(--first-color);
+    opacity: 1;
+    cursor: grab;
+    z-index: var(--z-fixed);
+    transition: width .5s ease-in;
 }
 
-body::-webkit-scrollbar-thumb:vertical:hover {
-    /* make a little lighter version of the --first-color to be the background color*/
-    background-color: var(--first-color-alt);
+#scrollbar:hover #scrollbar__thumb {
+    opacity: 1;
+    width: 10px;
+}
+
+#scrollbar__thumb.hidden{
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
 }
 
 /*==================== REUSABLE CSS CLASSES ====================*/
@@ -786,10 +804,6 @@ body::-webkit-scrollbar-thumb:vertical:hover {
 }
 
 @media screen and (min-width: 768px){
-    body::-webkit-scrollbar {
-        width: 0;
-        background-color: transparent;
-    }
 
     .container{
         margin-left: auto;

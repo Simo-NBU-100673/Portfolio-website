@@ -238,6 +238,49 @@ function getSkillsGroupHeader(skillsGroup){
     return skillsGroup.querySelector('.skills__header');
 }
 
+/*=============================== SCROLL ==============================*/
+const scrollThumb = document.getElementById('scrollbar__thumb');
+const scrollThumbHeight = 113;
+let clientHeight = document.documentElement.clientHeight;
+let scrollHeight = document.documentElement.scrollHeight;
+let isScrolling = false;
+
+//add event listener for change in the window size
+window.addEventListener('resize', () => {
+    clientHeight = document.documentElement.clientHeight;
+    scrollHeight = document.documentElement.scrollHeight;
+});
+window.addEventListener('scroll', () => {
+    if (!isScrolling) {
+        scrollThumb.classList.remove('hidden');
+    }
+
+    clearTimeout(isScrolling);
+    isScrolling = setTimeout(() => {
+        scrollThumb.classList.add('hidden');
+        isScrolling = false;
+    }, 700);
+
+    // get the value of the scroll from the top
+    const scrollY = window.scrollY;
+
+    const calculatedThumbPosition = scrollY + (scrollY / (scrollHeight - clientHeight)) * (clientHeight - scrollThumbHeight);
+
+    // Ensure the scrollThumbPosition stays within the valid range
+    const scrollThumbPosition = calculatedThumbPosition > (scrollHeight - scrollThumbHeight) ? (scrollHeight - scrollThumbHeight - 2) : calculatedThumbPosition;
+
+    // console.log(scrollThumbPosition);
+    console.log(scrollY);
+    scrollThumb.style.transform = `matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, ${scrollThumbPosition}, 0, 1)`;
+});
+
+scrollThumb.addEventListener('mousedown', (e) => {
+    // Prevent default behaviour
+    e.preventDefault();
+
+    //TODO make the scrollThumb draggable
+});
+
 /*==================== SCROLL SECTIONS ACTIVE LINK ====================*/
 const sections = document.querySelectorAll('section[id]')
 
